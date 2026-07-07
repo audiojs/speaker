@@ -1,5 +1,5 @@
 {
-  "name": "audio-speaker",
+  "name": "@audio/speaker",
   "version": "2.3.1",
   "description": "Output audio data to speaker in browser/node",
   "type": "module",
@@ -42,7 +42,7 @@
   "gypfile": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/audiojs/audio-speaker"
+    "url": "git+https://github.com/audiojs/audio-speaker.git"
   },
   "keywords": [
     "audio",
@@ -59,7 +59,7 @@
   "bugs": {
     "url": "https://github.com/audiojs/audio-speaker/issues"
   },
-  "homepage": "https://github.com/audiojs/audio-speaker",
+  "homepage": "https://github.com/audiojs/audio-speaker#readme",
   "engines": {
     "node": ">=18"
   },
@@ -73,5 +73,8 @@
   "devDependencies": {
     "prebuildify": "^6.0.1",
     "tst": "^9.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
