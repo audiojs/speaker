@@ -1,11 +1,11 @@
-# audio-speaker [![test](https://github.com/audiojs/audio-speaker/actions/workflows/test.yml/badge.svg)](https://github.com/audiojs/audio-speaker/actions/workflows/test.yml) [![npm](https://img.shields.io/npm/v/audio-speaker)](https://npmjs.org/package/audio-speaker)
+# @audio/speaker [![test](https://github.com/audiojs/audio-speaker/actions/workflows/test.yml/badge.svg)](https://github.com/audiojs/audio-speaker/actions/workflows/test.yml) [![npm](https://img.shields.io/npm/v/@audio/speaker)](https://npmjs.org/package/@audio/speaker)
 
 Output audio data to speaker in node or browser.
 
 ## Usage
 
 ```js
-import speaker from 'audio-speaker'
+import speaker from '@audio/speaker'
 
 let write = speaker({
   sampleRate: 44100,
@@ -26,7 +26,7 @@ write(null) // end playback
 Consume an async iterable source directly:
 
 ```js
-import speaker from 'audio-speaker'
+import speaker from '@audio/speaker'
 
 await speaker.from(audioSource, { sampleRate: 44100, channels: 2 })
 ```
@@ -34,7 +34,7 @@ await speaker.from(audioSource, { sampleRate: 44100, channels: 2 })
 ### Stream
 
 ```js
-import SpeakerWritable from 'audio-speaker/stream'
+import SpeakerWritable from '@audio/speaker/stream'
 
 source.pipe(SpeakerWritable({ sampleRate: 44100, channels: 2 }))
 ```
