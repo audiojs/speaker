@@ -66,6 +66,7 @@
   "optionalDependencies": {
     "@audio/speaker-darwin-arm64": ">=2.0.0",
     "@audio/speaker-darwin-x64": ">=2.0.0",
+    "@audio/speaker-darwin-arm64": ">=2.0.0",
     "@audio/speaker-linux-arm64": ">=2.0.0",
     "@audio/speaker-linux-x64": ">=2.0.0",
     "@audio/speaker-win32-x64": ">=2.0.0"
