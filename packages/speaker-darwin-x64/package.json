@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/audiojs/audio-speaker",
+    "url": "https://github.com/audiojs/speaker",
     "directory": "packages/speaker-darwin-x64"
   },
   "os": [

@@ -42,7 +42,7 @@
   "gypfile": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/audiojs/audio-speaker.git"
+    "url": "git+https://github.com/audiojs/speaker.git"
   },
   "keywords": [
     "audio",
@@ -57,9 +57,9 @@
   "author": "Dmitry Iv. <dfcreative@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/audiojs/audio-speaker/issues"
+    "url": "https://github.com/audiojs/speaker/issues"
   },
-  "homepage": "https://github.com/audiojs/audio-speaker#readme",
+  "homepage": "https://github.com/audiojs/speaker#readme",
   "engines": {
     "node": ">=18"
   },

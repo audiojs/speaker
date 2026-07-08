@@ -1,4 +1,4 @@
-# @audio/speaker [![test](https://github.com/audiojs/audio-speaker/actions/workflows/test.yml/badge.svg)](https://github.com/audiojs/audio-speaker/actions/workflows/test.yml) [![npm](https://img.shields.io/npm/v/@audio/speaker)](https://npmjs.org/package/@audio/speaker)
+# @audio/speaker [![test](https://github.com/audiojs/speaker/actions/workflows/test.yml/badge.svg)](https://github.com/audiojs/speaker/actions/workflows/test.yml) [![npm](https://img.shields.io/npm/v/@audio/speaker)](https://npmjs.org/package/@audio/speaker)
 
 Output audio data to speaker in node or browser.
 
