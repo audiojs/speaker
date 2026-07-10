@@ -8,6 +8,12 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node: [18, 20, 22]
+        # windows images carry VS2026 (v18): readable only by node-gyp ≥12, which needs node ≥22 — NAPI binary, one windows leg suffices
+        exclude:
+          - os: windows-latest
+            node: 18
+          - os: windows-latest
+            node: 20
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -15,5 +21,5 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm install --ignore-scripts --no-optional
-      - run: npx node-gyp@11 rebuild
+      - run: npx node-gyp@${{ matrix.node >= 22 && 'latest' || '11' }} rebuild
       - run: npm test
