@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 22
       - run: npm install --ignore-scripts
-      - run: npx node-gyp@latest rebuild ${{ matrix.gyp_args }}
+      - run: npx node-gyp@11 rebuild ${{ matrix.gyp_args }}
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.pkg }}

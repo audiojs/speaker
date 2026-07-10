@@ -15,5 +15,5 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm install --ignore-scripts --no-optional
-      - run: npx node-gyp@latest rebuild
+      - run: npx node-gyp@11 rebuild
       - run: npm test
