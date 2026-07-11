@@ -1,6 +1,6 @@
 {
   "name": "@audio/speaker",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Output audio data to speaker in browser/node",
   "type": "module",
   "sideEffects": false,
@@ -66,7 +66,6 @@
   "optionalDependencies": {
     "@audio/speaker-darwin-arm64": ">=2.0.0",
     "@audio/speaker-darwin-x64": ">=2.0.0",
-    "@audio/speaker-darwin-arm64": ">=2.0.0",
     "@audio/speaker-linux-arm64": ">=2.0.0",
     "@audio/speaker-linux-x64": ">=2.0.0",
     "@audio/speaker-win32-x64": ">=2.0.0"
@@ -77,5 +76,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "funding": "https://github.com/sponsors/audiojs"
 }
