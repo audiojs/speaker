@@ -14,9 +14,11 @@ export interface WriteFn {
   backend: string
 }
 
-export default function speaker(opts?: SpeakerOptions): WriteFn
+declare function speaker(opts?: SpeakerOptions): WriteFn
 
 declare namespace speaker {
   /** Consume an async iterable of PCM chunks through the speaker. */
   function from(source: AsyncIterable<Buffer | Uint8Array | AudioBuffer>, opts?: SpeakerOptions): Promise<void>
 }
+
+export default speaker
