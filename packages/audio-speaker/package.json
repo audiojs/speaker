@@ -1,0 +1,49 @@
+{
+  "name": "audio-speaker",
+  "version": "2.3.2",
+  "description": "Output audio data to speaker in browser/node — unscoped alias of @audio/speaker",
+  "type": "module",
+  "sideEffects": false,
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": "./index.js",
+    "./stream": "./stream.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "stream.js",
+    "index.d.ts",
+    "stream.d.ts"
+  ],
+  "dependencies": {
+    "@audio/speaker": "^2.3.2"
+  },
+  "keywords": [
+    "audio",
+    "speaker",
+    "pcm",
+    "sound",
+    "sink",
+    "output",
+    "web-audio",
+    "miniaudio"
+  ],
+  "license": "MIT",
+  "author": "Dmitry Iv. <dfcreative@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/audiojs/speaker.git",
+    "directory": "packages/audio-speaker"
+  },
+  "homepage": "https://github.com/audiojs/speaker/tree/master/packages/audio-speaker#readme",
+  "bugs": "https://github.com/audiojs/speaker/issues",
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "funding": "https://github.com/sponsors/audiojs"
+}
