@@ -2,7 +2,7 @@ import test from 'tst'
 import { ok, is } from 'tst'
 
 const isBrowser = typeof window !== 'undefined'
-const isCI = !!process.env?.CI
+const isCI = typeof process !== 'undefined' && !!process.env?.CI
 
 if (isBrowser) test.manual = true
 
@@ -30,6 +30,8 @@ function sine(freq, durationMs, { sampleRate = 44100, channels = 2, bitDepth = 1
   }
   return isBrowser ? buf : Buffer.from(buf.buffer)
 }
+// a zeroed chunk: a Buffer in Node, bytes in a browser
+const alloc = n => isBrowser ? new Uint8Array(n) : Buffer.alloc(n)
 
 // helper: write + flush + close
 function play(write, buf) {
@@ -66,12 +68,12 @@ test('multiple chunks', async () => {
     ;(function next() {
       if (n >= 4) return write.flush(() => { write.close(); resolve() })
       const frames = Math.round(44100 * 25 / 1000)
-      const buf = Buffer.alloc(frames * 4)
+      const buf = alloc(frames * 4), view = new DataView(buf.buffer, buf.byteOffset, buf.byteLength)
       for (let i = 0; i < frames; i++) {
         const val = Math.round(Math.sin(phase) * 32767)
         phase += 2 * Math.PI * 660 / 44100
-        buf.writeInt16LE(val, i * 4)
-        buf.writeInt16LE(val, i * 4 + 2)
+        view.setInt16(i * 4, val, true)
+        view.setInt16(i * 4 + 2, val, true)
       }
       write(buf, (err) => { if (err) return reject(err); n++; next() })
     })()
@@ -140,7 +142,7 @@ test('small buffer (single period)', async () => {
   await play(write, sine(440, 5))
 })
 
-test('small writes (128 samples) no underrun', async () => {
+test('small writes (128 samples) no underrun', { skip: isBrowser }, async () => {
   const { open } = await import('./src/backends/miniaudio.js')
   const device = open({ sampleRate: 44100, channels: 2, bitDepth: 16, capture: true })
   const blockSize = 128
@@ -189,7 +191,7 @@ test('small writes (128 samples) no underrun', async () => {
   ok(discontinuities <= 2, `${discontinuities} discontinuities in small-write output (frames ${start}-${end})`)
 })
 
-test('writePull: device starts and transitions to pull-paced callbacks', async () => {
+test('writePull: device starts and transitions to pull-paced callbacks', { skip: isBrowser }, async () => {
   // writePull fires cb synchronously while filling the initial buffer,
   // then switches to hardware-paced callbacks after device starts.
   // This test verifies both phases work and the transition is clean.
@@ -241,7 +243,7 @@ test('callback pacing: write rate matches real-time', async () => {
     function next() {
       if (framesWritten / sr * 1000 >= durationMs) return write.flush(() => { write.close(); resolve() })
       // Write silence — worst case for pacing (completes instantly without pacing)
-      const buf = Buffer.alloc(blockSize * bpf)
+      const buf = alloc(blockSize * bpf)
       framesWritten += blockSize
       write(buf, (err) => err ? reject(err) : next())
     }
@@ -256,7 +258,7 @@ test('callback pacing: write rate matches real-time', async () => {
   ok(ratio > 0.5, `write rate ${ratio.toFixed(2)}x not too slow`)
 })
 
-test('capture matches reference: 128-sample callback chain', { skip: isCI }, async () => {
+test('capture matches reference: 128-sample callback chain', { skip: isCI || isBrowser }, async () => {
   // Generate a reference signal, feed it through the speaker in 128-sample blocks
   // via callback chain, capture the output, compare sample-for-sample.
   // This catches ring buffer overruns, underruns, and pacing failures.

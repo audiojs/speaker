@@ -48,7 +48,7 @@ Tried in order; first successful one wins.
 | `miniaudio` | N-API addon wrapping [miniaudio.h](https://github.com/mackron/miniaudio) | Low | Prebuilt via `@audio/speaker-*` packages |
 | `process` | Pipes PCM to ffplay/sox/aplay | High | System tool must be installed |
 | `null` | Silent, maintains timing contract | — | Built-in (CI/headless fallback) |
-| `webaudio` | Web Audio API (browser only) | Low | Built-in |
+| `webaudio` | AudioWorklet, chunks played back to back (browser only) | Low | Built-in |
 
 ## API
 
@@ -59,8 +59,9 @@ Returns a sink function. Options:
 - `sampleRate` — default `44100`
 - `channels` — default `2`
 - `bitDepth` — `8`, `16` (default), `24`, `32`
-- `bufferSize` — ring buffer in ms, default `50`
+- `bufferSize` — ring buffer in ms, default `50` (browser: audio queued ahead of the write callback, default `100`)
 - `backend` — force a specific backend
+- `context` — browser: the AudioContext to play into; by default the page shares one per sample rate (`write.context`)
 
 ### `write(buffer, cb?)`
 
