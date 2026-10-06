@@ -1,6 +1,6 @@
 {
   "name": "@audio/speaker",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Output audio data to speaker in browser/node",
   "type": "module",
   "sideEffects": false,
@@ -34,12 +34,8 @@
     "browser.js",
     "browser.d.ts",
     "src/",
-    "native/speaker.c",
-    "native/miniaudio.h",
-    "binding.gyp",
     "prebuilds/"
   ],
-  "gypfile": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/audiojs/speaker.git"
